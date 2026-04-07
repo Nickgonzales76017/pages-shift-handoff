@@ -1,0 +1,119 @@
+name: Bonfyre Pipeline — Process Handoffs
+on:
+  push:
+    branches: [main]
+    paths: ['input/handoffs/**']
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: bonfyre-pipeline
+  cancel-in-progress: false
+
+jobs:
+  process:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      # ── Install Bonfyre from source ──
+      - name: Build Bonfyre binaries
+        run: |
+          # Install system deps
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq libsqlite3-dev pandoc
+
+          # Clone and build bonfyre (public repo)
+          git clone --depth 1 https://github.com/Nickgonzales76017/bonfyre.git /tmp/bonfyre
+          cd /tmp/bonfyre
+          make -j$(nproc) 2>&1 | tail -3
+          sudo make install
+
+      # ── Detect new handoff files ──
+      - name: Detect new handoff recordings
+        id: detect
+        run: |
+          CHANGED=$(git diff --name-only HEAD~1 HEAD -- 'input/handoffs/' | grep -E '\.(wav|mp3|m4a|ogg|flac|webm)$' || true)
+          if [ -z "$CHANGED" ]; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            echo "No new audio files detected."
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+            echo "$CHANGED" > /tmp/changed_files.txt
+            echo "Found $(echo "$CHANGED" | wc -l | tr -d ' ') new recording(s)."
+          fi
+
+      # ── Run heavy pipeline (Actions-side) ──
+      - name: Run Bonfyre pipeline
+        if: steps.detect.outputs.skip != 'true'
+        run: |
+          mkdir -p artifacts site/history
+
+          while IFS= read -r f; do
+            [ -f "$f" ] || continue
+            base=$(basename "$f" | sed 's/\.[^.]*$//')
+            echo "::group::Processing $base"
+
+            # Heavy ops — these need real compute
+            echo "  → bonfyre-media-prep"
+            bonfyre-media-prep "$f" --out "artifacts/${base}.prep.json"
+
+            echo "  → bonfyre-transcribe"
+            bonfyre-transcribe "artifacts/${base}.prep.json" --out "artifacts/${base}.transcript.json"
+
+            echo "  → bonfyre-brief"
+            bonfyre-brief "artifacts/${base}.transcript.json" --out "artifacts/${base}.brief.json"
+
+            echo "  → bonfyre-tag"
+            bonfyre-tag "artifacts/${base}.brief.json" --out "artifacts/${base}.tags.json"
+
+            echo "  → bonfyre-tone"
+            bonfyre-tone "artifacts/${base}.transcript.json" --out "artifacts/${base}.tone.json"
+
+            TIMESTAMP=$(date +%Y-%m-%d_%H%M)
+            echo "  → bonfyre-render"
+            bonfyre-render "artifacts/${base}.brief.json" --template handoff --out "site/history/${TIMESTAMP}-${base}.html"
+
+            echo "::endgroup::"
+          done < /tmp/changed_files.txt
+
+          echo "  → bonfyre-emit (rebuild site)"
+          bonfyre-emit artifacts/ --out site/ --format html
+
+          echo "Pipeline complete."
+          echo "  Artifacts: $(find artifacts/ -name '*.json' | wc -l | tr -d ' ')"
+          echo "  Pages: $(find site/ -name '*.html' | wc -l | tr -d ' ')"
+
+      # ── Commit artifacts + site back to repo ──
+      - name: Commit pipeline results
+        if: steps.detect.outputs.skip != 'true'
+        run: |
+          git config user.name "Bonfyre Pipeline"
+          git config user.email "bonfyre-bot@users.noreply.github.com"
+          git add artifacts/ site/
+          git diff --cached --quiet && echo "No changes to commit." && exit 0
+          git commit -m "[pipeline] $(find artifacts/ -name '*.brief.json' -newer artifacts/.gitkeep 2>/dev/null | wc -l | tr -d ' ') handoff(s) processed"
+          git push
+
+  # ── Deploy to GitHub Pages ──
+  deploy:
+    needs: process
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/configure-pages@v4
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - id: deployment
+        uses: actions/deploy-pages@v4
