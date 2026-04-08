@@ -115,15 +115,19 @@
       <!-- Upload -->
       <div class="dropzone" id="dropzone">
         <div class="dropzone-icon">🎙</div>
-        <div class="dropzone-text">Drop shift recording here<br><small>or click to browse</small></div>
+        <div class="dropzone-text">Choose a shift recording to prepare for GitHub-native intake<br><small>or click to browse</small></div>
         <input type="file" id="fileInput" accept="audio/*,.wav,.mp3,.m4a,.ogg,.flac,.webm">
       </div>
 
       <!-- Pipeline status -->
       <div class="pipeline" id="pipeline" style="display:none;">
-        <div class="pipeline-step" data-step="upload">
-          <span class="label">Upload to repo</span>
-          <span class="where">GitHub API</span>
+        <div class="pipeline-step" data-step="prepare">
+          <span class="label">Prepare intake file</span>
+          <span class="where">Browser</span>
+        </div>
+        <div class="pipeline-step" data-step="commit">
+          <span class="label">Upload + commit</span>
+          <span class="where">GitHub Web</span>
         </div>
         <div class="pipeline-step" data-step="transcribe">
           <span class="label">bonfyre-transcribe</span>
@@ -156,6 +160,15 @@
         <h4>Live Preview <span class="wasm-badge">WASM</span></h4>
         <pre id="previewContent">Processing…</pre>
       </div>
+      <div class="preview" id="intakePreview" style="display:none;">
+        <h4>GitHub Intake</h4>
+        <pre id="intakeContent">Preparing upload…</pre>
+        <div style="margin-top:.75rem;display:flex;gap:.5rem;flex-wrap:wrap;">
+          <a class="btn btn-primary" id="downloadPrepared" href="#" download>Download Intake Copy</a>
+          <a class="btn btn-ghost" id="openUploadFolder" href="#" target="_blank" rel="noreferrer">Open GitHub Folder</a>
+          <button class="btn btn-ghost" id="markUploaded" type="button">I Uploaded It</button>
+        </div>
+      </div>
 
       <!-- Areas filter -->
       <h4 style="margin-top:1.5rem;font-size:.85rem;color:var(--dim);">Areas</h4>
@@ -168,11 +181,9 @@
       <div class="config" id="configPanel" style="display:none;">
         <h4>GitHub Connection</h4>
         <label>Repository (owner/repo)</label>
-        <input type="text" id="cfgRepo" placeholder="you/pages-shift-handoff">
+        <input type="text" id="cfgRepo" placeholder="Nickgonzales76017/pages-shift-handoff">
         <label>Branch</label>
         <input type="text" id="cfgBranch" value="main">
-        <label>Token (PAT with repo scope)</label>
-        <input type="password" id="cfgToken" placeholder="ghp_…">
         <button class="btn btn-primary" onclick="saveConfig()" style="width:100%;margin-top:.5rem;">Save</button>
       </div>
     </div>
@@ -184,7 +195,8 @@
         <p>Record a shift handoff and drop it in the upload zone.</p>
         <p style="margin-top:1.5rem;font-size:.85rem;line-height:1.6;">
           <strong style="color:var(--accent);">Path 3 — Hybrid Architecture</strong><br>
-          Upload audio → <strong style="color:var(--accent)">GitHub Actions</strong> transcribes, tags, detects tone<br>
+          Prepare intake copy → upload with <strong style="color:var(--accent)">GitHub’s own web UI</strong><br>
+          → <strong style="color:var(--accent)">GitHub Actions</strong> transcribes, tags, detects tone<br>
           → <strong style="color:#818cf8">WASM</strong> runs bonfyre-brief in your browser for instant preview<br>
           → Actions renders final board → GitHub Pages deploys
         </p>
@@ -225,11 +237,18 @@
     </div>
   </div>
 
+  <script src="js/github-intake.js"></script>
   <script>
     // ─── State ──────────────────────────────────────────────────────────────
-    let config = JSON.parse(localStorage.getItem('bonfyre_config') || '{}');
-    let handoffs = JSON.parse(localStorage.getItem('bonfyre_handoffs') || '[]');
+    const STORE_KEY = 'bonfyre_pages-shift-handoff_config';
+    const ITEMS_KEY = 'bonfyre_pages-shift-handoff_items';
+    const INPUT_PATH = 'input/handoffs';
+    const DEFAULT_REPO = 'Nickgonzales76017/pages-shift-handoff';
+    const DEFAULT_BRANCH = 'main';
+    let config = Object.assign({ repo: DEFAULT_REPO, branch: DEFAULT_BRANCH }, JSON.parse(localStorage.getItem(STORE_KEY) || '{}'));
+    let handoffs = JSON.parse(localStorage.getItem(ITEMS_KEY) || '[]');
     let briefWorker = null;
+    let activeIntake = null;
 
     // ─── Shift Detection ────────────────────────────────────────────────────
     function detectShift() {
@@ -247,16 +266,14 @@
       if (p.style.display === 'block') {
         document.getElementById('cfgRepo').value = config.repo || '';
         document.getElementById('cfgBranch').value = config.branch || 'main';
-        document.getElementById('cfgToken').value = config.token || '';
       }
     }
     function saveConfig() {
       config = {
-        repo: document.getElementById('cfgRepo').value.trim(),
-        branch: document.getElementById('cfgBranch').value.trim() || 'main',
-        token: document.getElementById('cfgToken').value.trim()
+        repo: document.getElementById('cfgRepo').value.trim() || DEFAULT_REPO,
+        branch: document.getElementById('cfgBranch').value.trim() || DEFAULT_BRANCH
       };
-      localStorage.setItem('bonfyre_config', JSON.stringify(config));
+      localStorage.setItem(STORE_KEY, JSON.stringify(config));
       document.getElementById('configPanel').style.display = 'none';
     }
 
@@ -278,116 +295,112 @@
 
     // ─── File Processing (Hybrid Path 3) ────────────────────────────────────
     async function handleFile(file) {
-      if (!config.repo || !config.token) {
+      if (!config.repo) {
         toggleConfig();
-        alert('Configure your GitHub repo and token first.');
+        alert('Configure the GitHub repository first.');
         return;
       }
 
-      const name = file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
-      const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
-      const path = `input/handoffs/${timestamp}_${name}`;
+      const preparedName = BonfyreGitHubIntake.createPreparedName(file.name);
+      const itemId = preparedName.replace(/\.[^.]*$/, '');
+      const targetPath = `${INPUT_PATH}/${preparedName}`;
 
       showPipeline();
-      updateStep('upload', 'active');
+      updateStep('prepare', 'active');
+      updateStep('brief', 'wasm');
 
       try {
-        // Step 1: Upload to GitHub repo via API
-        const content = await fileToBase64(file);
-        await githubCommit(path, content, `[handoff] ${detectShift().label}: ${name}`);
-        updateStep('upload', 'done');
+        activeIntake = {
+          id: itemId,
+          file: preparedName,
+          originalFile: file.name,
+          shift: detectShift().label,
+          targetPath,
+          uploadFolderUrl: buildUploadFolderUrl(),
+          pollingStarted: false
+        };
+        const preparedDownload = BonfyreGitHubIntake.createPreparedDownload(file, preparedName);
+        updateStep('prepare', 'done');
+        updateStep('commit', 'active');
+        showIntakePreview(activeIntake, preparedDownload);
 
-        // Step 2: Actions will handle transcription (async on runner)
-        updateStep('transcribe', 'active');
-
-        // Step 3: Show WASM readiness
-        showWasmPreview(
-          `Processing ${name}…\n\n` +
-          `Actions workflow triggered.\n` +
-          `Transcription running on GitHub runner.\n\n` +
-          `Once transcript arrives, bonfyre-brief.wasm\n` +
-          `generates a live preview here instantly.`
-        );
-        updateStep('brief', 'wasm');
-
-        // Add optimistic handoff card
         const handoff = {
-          id: timestamp,
-          file: name,
+          id: itemId,
+          file: preparedName,
           shift: detectShift().label,
           time: new Date().toLocaleString(),
-          status: 'processing',
+          status: 'awaiting-upload',
           brief: null,
           tags: [],
-          urgent: false
+          urgent: false,
+          targetPath
         };
-        handoffs.unshift(handoff);
-        localStorage.setItem('bonfyre_handoffs', JSON.stringify(handoffs));
+        handoffs = BonfyreGitHubIntake.upsertItem(handoffs, handoff);
+        localStorage.setItem(ITEMS_KEY, JSON.stringify(handoffs));
         renderBoard();
-
-        // Poll for Actions completion
-        pollForCompletion(timestamp, name);
+        showWasmPreview(
+          `GitHub-native launch ready.\n\n` +
+          `1. Download the intake-ready copy.\n` +
+          `2. Upload it in the repo input folder using GitHub web UI.\n` +
+          `3. Commit on the configured branch.\n\n` +
+          `Shift Handoff Board will poll the public artifact outputs after that commit lands.`
+        );
 
       } catch (err) {
-        console.error('Upload failed:', err);
-        alert('Upload failed: ' + err.message);
+        console.error('Intake preparation failed:', err);
+        alert('Intake preparation failed: ' + err.message);
         hidePipeline();
       }
     }
 
-    // ─── GitHub API ─────────────────────────────────────────────────────────
-    async function githubCommit(path, contentBase64, message) {
-      const resp = await fetch(
-        `https://api.github.com/repos/${config.repo}/contents/${path}`,
-        {
-          method: 'PUT',
-          headers: {
-            'Authorization': `Bearer ${config.token}`,
-            'Content-Type': 'application/json',
-            'Accept': 'application/vnd.github.v3+json'
-          },
-          body: JSON.stringify({
-            message: message,
-            content: contentBase64,
-            branch: config.branch
-          })
-        }
-      );
-      if (!resp.ok) {
-        const body = await resp.json().catch(() => ({}));
-        throw new Error(body.message || `HTTP ${resp.status}`);
-      }
-      return resp.json();
-    }
-
+    // ─── Intake + Public Fetch ──────────────────────────────────────────────
     async function githubGetFile(path) {
-      const resp = await fetch(
-        `https://api.github.com/repos/${config.repo}/contents/${path}?ref=${config.branch}`,
-        {
-          headers: {
-            'Authorization': `Bearer ${config.token}`,
-            'Accept': 'application/vnd.github.v3+json'
-          }
-        }
-      );
-      if (!resp.ok) return null;
-      const data = await resp.json();
-      return atob(data.content);
+      return BonfyreGitHubIntake.fetchRawFile({
+        repo: config.repo,
+        branch: config.branch,
+        path: path
+      });
     }
 
-    async function githubCheckWorkflow() {
-      const resp = await fetch(
-        `https://api.github.com/repos/${config.repo}/actions/runs?branch=${config.branch}&per_page=1`,
-        {
-          headers: {
-            'Authorization': `Bearer ${config.token}`,
-            'Accept': 'application/vnd.github.v3+json'
-          }
-        }
-      );
-      if (!resp.ok) return null;
-      const data = await resp.json();
-      return data.workflow_runs?.[0] || null;
+    function buildUploadFolderUrl() {
+      return BonfyreGitHubIntake.buildUploadFolderUrl({
+        repo: config.repo,
+        branch: config.branch,
+        inputPath: INPUT_PATH
+      });
+    }
+
+    function showIntakePreview(intake, preparedDownload) {
+      const panel = document.getElementById('intakePreview');
+      const content = document.getElementById('intakeContent');
+      const downloadLink = document.getElementById('downloadPrepared');
+      const uploadLink = document.getElementById('openUploadFolder');
+      panel.style.display = 'block';
+      content.textContent = BonfyreGitHubIntake.buildIntakeMessage({
+        preparedName: intake.file,
+        routeLabel: intake.shift,
+        targetPath: intake.targetPath,
+        branch: config.branch
+      });
+      downloadLink.href = preparedDownload.href;
+      downloadLink.download = preparedDownload.download;
+      uploadLink.href = intake.uploadFolderUrl;
+    }
+
+    function markUploaded() {
+      if (!activeIntake) return;
+      updateStep('commit', 'done');
+      updateStep('transcribe', 'active');
+      const idx = handoffs.findIndex(h => h.id === activeIntake.id);
+      if (idx >= 0) {
+        handoffs[idx].status = 'processing';
+        localStorage.setItem(ITEMS_KEY, JSON.stringify(handoffs));
+        renderBoard();
+      }
+      if (!activeIntake.pollingStarted) {
+        activeIntake.pollingStarted = true;
+        pollForCompletion(activeIntake.id, activeIntake.file);
+      }
     }
 
     // ─── WASM Worker ────────────────────────────────────────────────────────
@@ -402,7 +415,7 @@
               if (idx >= 0) {
                 handoffs[idx].brief = e.data.result;
                 handoffs[idx].status = 'previewed';
-                localStorage.setItem('bonfyre_handoffs', JSON.stringify(handoffs));
+                localStorage.setItem(ITEMS_KEY, JSON.stringify(handoffs));
                 renderBoard();
               }
             }
@@ -463,9 +476,7 @@
               } catch (_) {}
             }
 
-            // Check for workflow completion
-            const workflow = await githubCheckWorkflow();
-            if (workflow && workflow.status === 'completed') {
+            if (brief && (tags || tone)) {
               updateStep('render', 'done');
               updateStep('emit', 'done');
 
@@ -473,11 +484,10 @@
               if (idx >= 0) {
                 handoffs[idx].status = 'complete';
                 if (brief) {
-                  try { handoffs[idx].brief = JSON.parse(brief).summary || brief; }
-                  catch (_) { handoffs[idx].brief = brief; }
+                  handoffs[idx].brief = BonfyreGitHubIntake.parseBriefPayload(brief);
                 }
               }
-              localStorage.setItem('bonfyre_handoffs', JSON.stringify(handoffs));
+              localStorage.setItem(ITEMS_KEY, JSON.stringify(handoffs));
               renderBoard();
               document.getElementById('lastUpdate').textContent =
                 'Last update: ' + new Date().toLocaleTimeString();
@@ -496,7 +506,7 @@
     function showPipeline() {
       document.getElementById('pipeline').style.display = 'block';
       document.getElementById('statusBadge').className = 'badge badge-processing';
-      document.getElementById('statusBadge').textContent = 'PROCESSING';
+      document.getElementById('statusBadge').textContent = 'READY';
     }
     function hidePipeline() {
       document.getElementById('statusBadge').className = 'badge badge-live';
@@ -510,15 +520,6 @@
       document.getElementById('wasmPreview').style.display = 'block';
       document.getElementById('previewContent').textContent = text;
     }
-    function fileToBase64(file) {
-      return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = () => resolve(reader.result.split(',')[1]);
-        reader.onerror = reject;
-        reader.readAsDataURL(file);
-      });
-    }
-
     // ─── Board Rendering ────────────────────────────────────────────────────
     function renderBoard() {
       const container = document.getElementById('boardContent');
@@ -534,7 +535,7 @@
         const statusColor = h.status === 'complete' ? 'var(--green)' :
                             h.status === 'processing' ? 'var(--yellow)' : '#818cf8';
         const statusLabel = h.status === 'complete' ? '✓ Complete' :
-                            h.status === 'processing' ? '⏳ Processing…' : '🔮 WASM Preview';
+                            h.status === 'processing' ? '⏳ Processing…' : '↗ Ready for GitHub Upload';
 
         html += `<div class="card">
           <h3>${h.shift} — ${h.file}</h3>
@@ -566,6 +567,7 @@
     });
 
     // ─── Init ───────────────────────────────────────────────────────────────
+    document.getElementById('markUploaded').addEventListener('click', markUploaded);
     initBriefWorker();
     renderBoard();
   </script>
