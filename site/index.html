@@ -106,6 +106,7 @@
       <span class="badge badge-live" id="statusBadge">LIVE</span>
       <div class="header-right">
         <span id="shiftLabel" style="font-size:.85rem;color:var(--dim)"></span>
+        <button class="btn btn-ghost" id="toggleDemoBtn" type="button">Clear Demo Data</button>
         <button class="btn btn-ghost" onclick="toggleConfig()">Settings</button>
       </div>
     </header>
@@ -570,6 +571,16 @@
     document.getElementById('markUploaded').addEventListener('click', markUploaded);
     initBriefWorker();
     renderBoard();
+  </script>
+  <script src="js/demo-boot.js"></script>
+  <script>
+    BonfyreDemoBoot.init({
+      storeKey: ITEMS_KEY,
+      demoPath: 'demos/shift-handoff/demo-item.json',
+      getItems: () => handoffs,
+      setItems: value => { handoffs = value; },
+      renderBoard: renderBoard
+    });
   </script>
 </body>
 </html>
