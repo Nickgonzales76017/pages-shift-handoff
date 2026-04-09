@@ -1,7 +1,7 @@
 {
   "id": "demo-shift-handoff",
   "file": "er-night-shift-handoff.wav",
-  "time": "Demo dataset",
+  "time": "Reference corpus",
   "status": "complete",
   "brief": "Two patients need close follow-up before 7 AM: one awaiting repeat labs after pain escalation and one boarding with transport delays. Team also noted a medication timing issue on bed 14 and asked the morning crew to confirm discharge paperwork before noon.",
   "tags": ["labs", "transport", "discharge"],

@@ -2,7 +2,7 @@
   {
     "id": "demo-shift-handoff-a",
     "file": "er-night-shift-handoff.wav",
-    "time": "Demo dataset",
+    "time": "Reference corpus",
     "status": "complete",
     "brief": "Two patients need close follow-up before 7 AM: one awaiting repeat labs after pain escalation and one boarding with transport delays. Team also noted a medication timing issue on bed 14 and asked the morning crew to confirm discharge paperwork before noon.",
     "tags": [
@@ -16,15 +16,15 @@
     "flagged": false,
     "searchSummary": "night issue, handoff risk, recurring blocker",
     "whyItMatters": "One shift record becomes part of a searchable operational memory.",
-    "searchIntro": "One shift record becomes part of a searchable operational memory. Search across the seeded records to feel that inside the app.",
+    "searchIntro": "One shift record becomes part of a searchable operational memory. Search across the reference records to feel that inside the app.",
     "searchOutputs": []
   },
   {
     "id": "demo-shift-handoff-b",
     "file": "Related er-night-shift-handoff.wav",
-    "time": "Demo dataset",
+    "time": "Reference corpus",
     "status": "complete",
-    "brief": "A second seeded record extends the same workflow so in-app search and reuse are visible instead of theoretical.",
+    "brief": "A second reference record extends the same workflow so in-app search and reuse are visible instead of theoretical.",
     "tags": [
       "labs",
       "transport",
@@ -36,15 +36,15 @@
     "flagged": false,
     "searchSummary": "related signals, continuity, reuse",
     "whyItMatters": "One shift record becomes part of a searchable operational memory.",
-    "searchIntro": "One shift record becomes part of a searchable operational memory. Search across the seeded records to feel that inside the app.",
+    "searchIntro": "One shift record becomes part of a searchable operational memory. Search across the reference records to feel that inside the app.",
     "searchOutputs": []
   },
   {
     "id": "demo-shift-handoff-c",
     "file": "Follow-up er-night-shift-handoff.wav",
-    "time": "Demo dataset",
+    "time": "Reference corpus",
     "status": "complete",
-    "brief": "A third seeded record shows how this app can connect follow-up work, recurring themes, and downstream use without leaving the demo experience.",
+    "brief": "A third reference record shows how this app can connect follow-up work, recurring themes, and downstream use without leaving the demo experience.",
     "tags": [
       "labs",
       "transport",
@@ -56,7 +56,7 @@
     "flagged": false,
     "searchSummary": "follow-up, memory, downstream action",
     "whyItMatters": "One shift record becomes part of a searchable operational memory.",
-    "searchIntro": "One shift record becomes part of a searchable operational memory. Search across the seeded records to feel that inside the app.",
+    "searchIntro": "One shift record becomes part of a searchable operational memory. Search across the reference records to feel that inside the app.",
     "searchOutputs": []
   }
 ]
