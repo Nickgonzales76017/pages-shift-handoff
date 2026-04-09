@@ -1,62 +1,107 @@
 [
   {
-    "id": "demo-shift-handoff-a",
-    "file": "er-night-shift-handoff.wav",
-    "time": "Reference corpus",
+    "id": "practice-nursing-hand-off-report-1",
+    "file": "Practice Nursing Hand-Off Report #1",
+    "time": "Public origin · 128s",
     "status": "complete",
-    "brief": "Two patients need close follow-up before 7 AM: one awaiting repeat labs after pain escalation and one boarding with transport delays. Team also noted a medication timing issue on bed 14 and asked the morning crew to confirm discharge paperwork before noon.",
-    "tags": [
-      "labs",
-      "transport",
-      "discharge"
-    ],
-    "urgent": true,
-    "shift": "Night \u2192 Morning",
+    "brief": "A nursing training handoff with hip ORIF recovery, pain control, glucose checks, ambulation, wound and IV status, and follow-up needs for the next team.",
+    "tags": ["handoff", "nursing", "SBAR", "orthopedics"],
+    "urgent": false,
+    "shift": "Training Handoff",
     "demo": true,
     "flagged": false,
-    "searchSummary": "night issue, handoff risk, recurring blocker",
-    "whyItMatters": "One shift record becomes part of a searchable operational memory.",
-    "searchIntro": "One shift record becomes part of a searchable operational memory. Search across the reference records to feel that inside the app.",
-    "searchOutputs": []
+    "sourceUrl": "https://www.youtube.com/watch?v=fIABkSYOiv4",
+    "sourceLabel": "Watch original public video",
+    "sourceTitle": "Practice Nursing Hand-Off Report #1",
+    "publisher": "Nursing School Explained",
+    "license": "Public YouTube origin; linked only, no mirrored media",
+    "sourceCopy": "Bonfyre processed the public origin transiently, removed the downloaded media, and kept only derived artifacts.",
+    "whyItMatters": "The same messy training audio becomes a clean transcript, a shift-ready brief, and a searchable handoff record with the original source still traceable.",
+    "searchSummary": "hip ORIF, pain control, glucose checks, ambulation, wound status",
+    "searchIntro": "Search across the public-origin handoff records to see continuity, clinical jargon, urgency, and follow-up needs without opening raw files.",
+    "outputs": ["handoff brief", "clean transcript", "proof bundle", "search across handoffs"],
+    "searchOutputs": ["search across handoffs"],
+    "outputNotes": {
+      "handoff brief": "A concise Bonfyre brief extracted from the transcript for the next operator or shift lead.",
+      "clean transcript": "The transcript cleaned from Bonfyre's raw speech output so the content is easier to inspect.",
+      "proof bundle": "The machine-readable proof that shows the public source, runtime path, and derived artifacts.",
+      "search across handoffs": "Search turns several handoff sources into operational memory instead of isolated summaries."
+    },
+    "outputLinks": {
+      "handoff brief": {"href": "demos/shift-handoff/proofs/practice-nursing-hand-off-report-1/brief.md", "label": "Open handoff brief"},
+      "clean transcript": {"href": "demos/shift-handoff/proofs/practice-nursing-hand-off-report-1/clean.txt", "label": "Open clean transcript"},
+      "proof bundle": {"href": "demos/shift-handoff/proofs/practice-nursing-hand-off-report-1/proof.json", "label": "Open proof JSON"},
+      "transcript JSON": {"href": "demos/shift-handoff/proofs/practice-nursing-hand-off-report-1/transcript.json", "label": "Open transcript JSON"}
+    }
   },
   {
-    "id": "demo-shift-handoff-b",
-    "file": "Related er-night-shift-handoff.wav",
-    "time": "Reference corpus",
+    "id": "practice-hand-off-report-2",
+    "file": "Practice Hand-Off Report #2",
+    "time": "Public origin · 170s",
     "status": "complete",
-    "brief": "A second reference record extends the same workflow so in-app search and reuse are visible instead of theoretical.",
-    "tags": [
-      "labs",
-      "transport",
-      "related"
-    ],
+    "brief": "A pre-op nursing handoff for cholelithiasis: NPO timing, IV fluid changes, pain and nausea meds, signed consent, abnormal labs, and the question the next nurse asks back.",
+    "tags": ["handoff", "nursing", "pre-op", "medication"],
     "urgent": true,
-    "shift": "Night \u2192 Morning",
+    "shift": "Training Handoff",
     "demo": true,
-    "flagged": false,
-    "searchSummary": "related signals, continuity, reuse",
-    "whyItMatters": "One shift record becomes part of a searchable operational memory.",
-    "searchIntro": "One shift record becomes part of a searchable operational memory. Search across the reference records to feel that inside the app.",
-    "searchOutputs": []
+    "flagged": true,
+    "sourceUrl": "https://www.youtube.com/watch?v=OflM1JKZNJo",
+    "sourceLabel": "Watch original public video",
+    "sourceTitle": "Practice Hand-Off Report #2",
+    "publisher": "Nursing School Explained",
+    "license": "Public YouTube origin; linked only, no mirrored media",
+    "sourceCopy": "Bonfyre processed the public origin transiently, removed the downloaded media, and kept only derived artifacts.",
+    "whyItMatters": "This one shows the value of structure: the important follow-ups are buried inside fast clinical speech, but Bonfyre turns them into usable next-shift memory.",
+    "searchSummary": "cholelithiasis, NPO, IV fluids, morphine, consent, sodium question",
+    "searchIntro": "Search across the public-origin handoff records to see continuity, clinical jargon, urgency, and follow-up needs without opening raw files.",
+    "outputs": ["handoff brief", "clean transcript", "proof bundle", "search across handoffs"],
+    "searchOutputs": ["search across handoffs"],
+    "outputNotes": {
+      "handoff brief": "A concise Bonfyre brief extracted from the transcript for the next operator or shift lead.",
+      "clean transcript": "The cleaned transcript makes the original fast handoff inspectable without replaying the whole video.",
+      "proof bundle": "The machine-readable proof that shows the public source, runtime path, and derived artifacts.",
+      "search across handoffs": "Search turns several handoff sources into operational memory instead of isolated summaries."
+    },
+    "outputLinks": {
+      "handoff brief": {"href": "demos/shift-handoff/proofs/practice-hand-off-report-2/brief.md", "label": "Open handoff brief"},
+      "clean transcript": {"href": "demos/shift-handoff/proofs/practice-hand-off-report-2/clean.txt", "label": "Open clean transcript"},
+      "proof bundle": {"href": "demos/shift-handoff/proofs/practice-hand-off-report-2/proof.json", "label": "Open proof JSON"},
+      "transcript JSON": {"href": "demos/shift-handoff/proofs/practice-hand-off-report-2/transcript.json", "label": "Open transcript JSON"}
+    }
   },
   {
-    "id": "demo-shift-handoff-c",
-    "file": "Follow-up er-night-shift-handoff.wav",
-    "time": "Reference corpus",
+    "id": "teamstepps-sbar-inpatient-medical-teams",
+    "file": "TeamSTEPPS: SBAR in Inpatient Medical Teams",
+    "time": "Public origin · 95s",
     "status": "complete",
-    "brief": "A third reference record shows how this app can connect follow-up work, recurring themes, and downstream use without leaving the demo experience.",
-    "tags": [
-      "labs",
-      "transport",
-      "follow-up"
-    ],
+    "brief": "A short AHRQ SBAR escalation: an older patient becomes confused, vital signs change, urine output drops, and the nurse escalates possible sepsis to the physician.",
+    "tags": ["handoff", "SBAR", "escalation", "sepsis"],
     "urgent": true,
-    "shift": "Night \u2192 Morning",
+    "shift": "Escalation Call",
     "demo": true,
-    "flagged": false,
-    "searchSummary": "follow-up, memory, downstream action",
-    "whyItMatters": "One shift record becomes part of a searchable operational memory.",
-    "searchIntro": "One shift record becomes part of a searchable operational memory. Search across the reference records to feel that inside the app.",
-    "searchOutputs": []
+    "flagged": true,
+    "sourceUrl": "https://www.youtube.com/watch?v=nbJPAumzJrc",
+    "sourceLabel": "Watch original public video",
+    "sourceTitle": "TeamSTEPPS: SBAR in Inpatient Medical Teams",
+    "publisher": "AHRQ Patient Safety",
+    "license": "Public YouTube origin; linked only, no mirrored media",
+    "sourceCopy": "Bonfyre processed the public origin transiently, removed the downloaded media, and kept only derived artifacts.",
+    "whyItMatters": "This clip is a harder input: urgent social context, medical jargon, noisy recognition, and a time-sensitive recommendation still become a reviewable handoff artifact.",
+    "searchSummary": "confusion, urine output, possible sepsis, SBAR escalation, physician callback",
+    "searchIntro": "Search across the public-origin handoff records to see continuity, clinical jargon, urgency, and follow-up needs without opening raw files.",
+    "outputs": ["handoff brief", "clean transcript", "proof bundle", "search across handoffs"],
+    "searchOutputs": ["search across handoffs"],
+    "outputNotes": {
+      "handoff brief": "A concise Bonfyre brief extracted from the transcript for the next operator or shift lead.",
+      "clean transcript": "The cleaned transcript exposes where the speech path is useful and where quality still needs pressure.",
+      "proof bundle": "The machine-readable proof that shows the public source, runtime path, and derived artifacts.",
+      "search across handoffs": "Search turns several handoff sources into operational memory instead of isolated summaries."
+    },
+    "outputLinks": {
+      "handoff brief": {"href": "demos/shift-handoff/proofs/teamstepps-sbar-inpatient-medical-teams/brief.md", "label": "Open handoff brief"},
+      "clean transcript": {"href": "demos/shift-handoff/proofs/teamstepps-sbar-inpatient-medical-teams/clean.txt", "label": "Open clean transcript"},
+      "proof bundle": {"href": "demos/shift-handoff/proofs/teamstepps-sbar-inpatient-medical-teams/proof.json", "label": "Open proof JSON"},
+      "transcript JSON": {"href": "demos/shift-handoff/proofs/teamstepps-sbar-inpatient-medical-teams/transcript.json", "label": "Open transcript JSON"}
+    }
   }
 ]

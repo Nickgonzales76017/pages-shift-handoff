@@ -1,0 +1,16 @@
+{
+  "sourceSystem": "BonfyreTranscribe",
+  "segments": [
+    {"t0": 0, "t1": 30000, "confidence": 0.8385, "logprob": -0.176, "no_speech": 0.000, "compression_ratio": 1.79, "quality": 0.8385, "hallucination_flags": 0, "speaker_turn": false, "text": " what i've discovered in the clinical setting is that students sometimes have trouble and keeping up with report when that's been given to them so here are a few exercises it'll help you prepare and get familiar with taking report in medical abbreviations so that you can be faster in charting those that information down and then also become more used to using these medical abbreviations. These are just suggestions but it'll help you get faster and get a better understanding of how handoff is performed."},
+    {"t0": 30000, "t1": 60000, "confidence": 0.6503, "logprob": -0.430, "no_speech": 0.000, "compression_ratio": 1.64, "quality": 0.6503, "hallucination_flags": 0, "speaker_turn": false, "text": " mister smith in room five or two is a seventy eight year old male who had an or if of the left hip two days ago he fell while he was walking his dog cuz it tripped over the leash past medical history includes hypertension diabetes high cholesterol osteoarthritis is a smoker and he says it drinks about one or two beers every night his medications are his regular home medications in addition he's getting low in ox 40 milligrams sub-qbi"},
+    {"t0": 60000, "t1": 90000, "confidence": 0.6032, "logprob": -0.506, "no_speech": 0.000, "compression_ratio": 1.72, "quality": 0.6031, "hallucination_flags": 0, "speaker_turn": false, "text": " ready which is do it twenty one hundred and then percocet for pain he had usually takes one pill in the last dose i gave him was at fourteen thirty with some pretty good relief his a and all times four as long so clear his belly is soft he's eating well he boy's in the zero no use up with p t i saw him walk down the hall for a few steps and did pretty well surgical site to left hip has addressing is clean dry in intact he has an IV saline locked to the left forearm"},
+    {"t0": 90000, "t1": 119960, "confidence": 0.5889, "logprob": -0.529, "no_speech": 0.000, "compression_ratio": 1.67, "quality": 0.5889, "hallucination_flags": 0, "speaker_turn": false, "text": " money gauge that looks good is uh... on a diabetic diet and like i said he's been eating well blood sugars for me were one oh six one eighty nine and 153 so it didn't give him any dinner coverage so what needs to be done for him paren pain meds you can have it again six hours or eight thirty uh... get them up with petee you might want to give them up to sit and watch tv at night and he's actually able call for assistance in case he needs"},
+    {"t0": 120000, "t1": 121840, "confidence": 0.2276, "logprob": -1.480, "no_speech": 0.000, "compression_ratio": 0.79, "quality": 0.2276, "hallucination_flags": 12, "speaker_turn": false, "text": " anything any questions"}
+  ],
+  "summary": {
+    "segments_total": 5,
+    "segments_filtered": 0,
+    "segments_hallucinated": 1
+  },
+  "timing": {"encode_ms": 169.0, "decode_ms": 4.3, "batchd_ms": 1.7, "sample_ms": 510.0, "prompt_ms": 0.3}
+}

@@ -259,7 +259,7 @@
     var sourceStrip = buildSourceStrip(item);
     return '<div class="bonfyre-detail-card">' +
       '<h4>' + escapeHtml(item.file || 'Demo record') + '</h4>' +
-      '<div class="bonfyre-detail-meta">' + escapeHtml(item.time || 'Reference corpus') + '</div>' +
+      '<div class="bonfyre-detail-meta">' + escapeHtml(item.time || 'Public-origin record') + '</div>' +
       sourceStrip +
       '<div class="bonfyre-detail-copy">' + escapeHtml(item.whyItMatters || item.brief || '') + '</div>' +
       '<div class="bonfyre-detail-tags">' + (item.tags || []).slice(0, 5).map(function(tag) {
@@ -304,12 +304,12 @@
     var links = getSourceLinks(item);
     if (!links.length) return '';
     var summary = buildSourceSummary(item);
-    var copy = item.sourceCopy || 'Track this card back to the recording or source file Bonfyre structured.';
+    var copy = item.sourceCopy || 'Trace this card back to the public origin Bonfyre processed.';
     return '<div class="bonfyre-source-strip" data-bonfyre-source-strip="1">' +
-      '<div class="bonfyre-source-kicker">Source</div>' +
+      '<div class="bonfyre-source-kicker">Provenance</div>' +
       '<div class="bonfyre-source-copy">' + escapeHtml(copy) + (summary ? ' <span style="color:#9ca3af;">' + escapeHtml(summary) + '</span>' : '') + '</div>' +
       '<div class="bonfyre-source-actions">' + links.map(function(link) {
-        return '<a class="bonfyre-source-link" href="' + escapeHtml(link.href) + '" target="_blank" rel="noreferrer noopener">' + escapeHtml(link.label || 'Open source') + '</a>';
+        return '<a class="bonfyre-source-link" href="' + escapeHtml(link.href) + '" target="_blank" rel="noreferrer noopener">' + escapeHtml(link.label || 'Open public source') + '</a>';
       }).join('') + '</div>' +
     '</div>';
   }

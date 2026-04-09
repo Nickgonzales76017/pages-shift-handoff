@@ -1,0 +1,34 @@
+{
+  "sourceSystem": "BonfyreTranscribe",
+  "segments": [
+    {"t0": 0, "t1": 7000, "confidence": 0.3343, "logprob": -1.096, "no_speech": 0.000, "compression_ratio": 1.10, "quality": 0.3343, "hallucination_flags": 8, "speaker_turn": false, "text": " hi doctor fella yes at this is a new from to west i've been taken care of the"},
+    {"t0": 7000, "t1": 16740, "confidence": 0.5276, "logprob": -0.639, "no_speech": 0.000, "compression_ratio": 1.25, "quality": 0.5275, "hallucination_flags": 0, "speaker_turn": false, "text": " well she's an eighty two-year old woman she was admitted three days ago with dbt as he's on heparin telemetry and oxygen"},
+    {"t0": 16740, "t1": 23580, "confidence": 0.5972, "logprob": -0.516, "no_speech": 0.000, "compression_ratio": 1.23, "quality": 0.5972, "hallucination_flags": 0, "speaker_turn": false, "text": " has been alert and pleasant with no problems other than urinary retention she has a folium place"},
+    {"t0": 23580, "t1": 30700, "confidence": 0.6254, "logprob": -0.469, "no_speech": 0.000, "compression_ratio": 1.04, "quality": 0.6254, "hallucination_flags": 0, "speaker_turn": false, "text": " tonight she appeared confused uh... she's awake and oriented to person but"},
+    {"t0": 30700, "t1": 37140, "confidence": 0.4190, "logprob": -0.870, "no_speech": 0.000, "compression_ratio": 1.10, "quality": 0.4190, "hallucination_flags": 0, "speaker_turn": false, "text": " she thinks that you said her aunt's house and that ronald reagan is president"},
+    {"t0": 37140, "t1": 42380, "confidence": 0.5961, "logprob": -0.517, "no_speech": 0.000, "compression_ratio": 1.16, "quality": 0.5961, "hallucination_flags": 0, "speaker_turn": false, "text": " well no i'd checked with her nurse from the last few nights and confirm that she doesn't"},
+    {"t0": 42380, "t1": 45380, "confidence": 0.7317, "logprob": -0.312, "no_speech": 0.000, "compression_ratio": 0.84, "quality": 0.7317, "hallucination_flags": 0, "speaker_turn": false, "text": " sundown and she's normally very sharp"},
+    {"t0": 45380, "t1": 49180, "confidence": 0.7752, "logprob": -0.255, "no_speech": 0.000, "compression_ratio": 0.91, "quality": 0.7752, "hallucination_flags": 0, "speaker_turn": false, "text": " her heart rate has increased to one ten"},
+    {"t0": 49180, "t1": 53060, "confidence": 0.6503, "logprob": -0.430, "no_speech": 0.000, "compression_ratio": 0.91, "quality": 0.6503, "hallucination_flags": 0, "speaker_turn": false, "text": " her blood pressure is down to one ten over sixty"},
+    {"t0": 53060, "t1": 56180, "confidence": 0.1578, "logprob": -1.846, "no_speech": 0.000, "compression_ratio": 0.85, "quality": 0.1578, "hallucination_flags": 8, "speaker_turn": false, "text": " yet her sisterly usually runs when"},
+    {"t0": 56180, "t1": 59020, "confidence": 0.3298, "logprob": -1.109, "no_speech": 0.000, "compression_ratio": 0.33, "quality": 0.3298, "hallucination_flags": 8, "speaker_turn": false, "text": " yes"},
+    {"t0": 59020, "t1": 62540, "confidence": 0.6095, "logprob": -0.495, "no_speech": 0.000, "compression_ratio": 0.84, "quality": 0.6095, "hallucination_flags": 0, "speaker_turn": false, "text": " uh... temperature is thirty seven celsius"},
+    {"t0": 62540, "t1": 65420, "confidence": 0.7470, "logprob": -0.292, "no_speech": 0.000, "compression_ratio": 0.82, "quality": 0.7470, "hallucination_flags": 0, "speaker_turn": false, "text": " she looks pale but not uncomfortable"},
+    {"t0": 65420, "t1": 70020, "confidence": 0.6224, "logprob": -0.474, "no_speech": 0.000, "compression_ratio": 1.06, "quality": 0.6224, "hallucination_flags": 0, "speaker_turn": false, "text": " her co-ed studies are within the parameters and her blood gases normal"},
+    {"t0": 70020, "t1": 72040, "confidence": 0.3665, "logprob": -1.004, "no_speech": 0.000, "compression_ratio": 0.78, "quality": 0.3665, "hallucination_flags": 8, "speaker_turn": false, "text": " all other a m labs or normal"},
+    {"t0": 72040, "t1": 73660, "confidence": 0.4929, "logprob": -0.708, "no_speech": 0.000, "compression_ratio": 0.81, "quality": 0.4928, "hallucination_flags": 0, "speaker_turn": false, "text": " she's not putting up with your in"},
+    {"t0": 73660, "t1": 76420, "confidence": 0.3157, "logprob": -1.153, "no_speech": 0.000, "compression_ratio": 0.67, "quality": 0.3157, "hallucination_flags": 12, "speaker_turn": false, "text": " it looks cloudy"},
+    {"t0": 76420, "t1": 79220, "confidence": 0.6458, "logprob": -0.437, "no_speech": 0.000, "compression_ratio": 0.94, "quality": 0.6458, "hallucination_flags": 0, "speaker_turn": false, "text": " i'm worried about her i think she needs to be seen"},
+    {"t0": 79220, "t1": 82560, "confidence": 0.4116, "logprob": -0.888, "no_speech": 0.000, "compression_ratio": 0.98, "quality": 0.4116, "hallucination_flags": 0, "speaker_turn": false, "text": " when we order some labs maybe send a year for culture"},
+    {"t0": 82560, "t1": 85500, "confidence": 0.7668, "logprob": -0.265, "no_speech": 0.000, "compression_ratio": 0.88, "quality": 0.7668, "hallucination_flags": 0, "speaker_turn": false, "text": " yes sounds like she could be getting septic"},
+    {"t0": 85500, "t1": 89580, "confidence": 0.4093, "logprob": -0.893, "no_speech": 0.000, "compression_ratio": 1.03, "quality": 0.4093, "hallucination_flags": 0, "speaker_turn": false, "text": " send your analysis with culture chemistry is and to see the c"},
+    {"t0": 89580, "t1": 93080, "confidence": 0.6814, "logprob": -0.384, "no_speech": 0.000, "compression_ratio": 1.04, "quality": 0.6814, "hallucination_flags": 0, "speaker_turn": false, "text": " thanks for calling on my way but i need to know if they're any changes"},
+    {"t0": 93080, "t1": 93680, "confidence": 0.3840, "logprob": -0.957, "no_speech": 0.000, "compression_ratio": 0.60, "quality": 0.3840, "hallucination_flags": 0, "speaker_turn": false, "text": " immediately"}
+  ],
+  "summary": {
+    "segments_total": 23,
+    "segments_filtered": 0,
+    "segments_hallucinated": 5
+  },
+  "timing": {"encode_ms": 207.9, "decode_ms": 5.5, "batchd_ms": 0.0, "sample_ms": 355.1, "prompt_ms": 0.4}
+}

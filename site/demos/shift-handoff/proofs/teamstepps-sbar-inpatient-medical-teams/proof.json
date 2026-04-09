@@ -1,0 +1,26 @@
+{
+  "title": "TeamSTEPPS: SBAR in Inpatient Medical Teams",
+  "public_url": "https://www.youtube.com/watch?v=nbJPAumzJrc",
+  "out_dir": "/tmp/bonfyre-public-proof-sbar-teamstepps",
+  "source": {
+    "title": "TeamSTEPPS: SBAR in Inpatient Medical Teams",
+    "channel": "AHRQ Patient Safety",
+    "duration_seconds": 95
+  },
+  "transcribe": {
+    "avg_confidence": 0.5303,
+    "avg_logprob": -0.696,
+    "rtf": 0.0414,
+    "segments_total": 23,
+    "segments_hallucinated": 5
+  },
+  "outputs": {
+    "transcript_json": "/tmp/bonfyre-public-proof-sbar-teamstepps/transcribe/transcript.json",
+    "transcript_txt": "/tmp/bonfyre-public-proof-sbar-teamstepps/transcribe/transcript.txt",
+    "clean_txt": "/tmp/bonfyre-public-proof-sbar-teamstepps/clean/clean.txt",
+    "paragraphs_txt": "/tmp/bonfyre-public-proof-sbar-teamstepps/paragraph/paragraphs.txt",
+    "brief_md": "/tmp/bonfyre-public-proof-sbar-teamstepps/brief/brief.md",
+    "brief_artifact": "/tmp/bonfyre-public-proof-sbar-teamstepps/brief/artifact.json"
+  },
+  "retained_media": false
+}

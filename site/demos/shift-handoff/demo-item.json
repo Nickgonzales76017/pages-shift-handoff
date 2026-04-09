@@ -1,11 +1,20 @@
 {
-  "id": "demo-shift-handoff",
-  "file": "er-night-shift-handoff.wav",
-  "time": "Reference corpus",
+  "id": "practice-nursing-hand-off-report-1",
+  "file": "Practice Nursing Hand-Off Report #1",
+  "time": "Public origin · 128s",
   "status": "complete",
-  "brief": "Two patients need close follow-up before 7 AM: one awaiting repeat labs after pain escalation and one boarding with transport delays. Team also noted a medication timing issue on bed 14 and asked the morning crew to confirm discharge paperwork before noon.",
-  "tags": ["labs", "transport", "discharge"],
-  "urgent": true,
-  "shift": "Night → Morning",
-  "demo": true
+  "brief": "A nursing training handoff with hip ORIF recovery, pain control, glucose checks, ambulation, wound and IV status, and follow-up needs for the next team.",
+  "tags": ["handoff", "nursing", "SBAR", "orthopedics"],
+  "urgent": false,
+  "shift": "Training Handoff",
+  "demo": true,
+  "sourceUrl": "https://www.youtube.com/watch?v=fIABkSYOiv4",
+  "sourceLabel": "Watch original public video",
+  "sourceTitle": "Practice Nursing Hand-Off Report #1",
+  "publisher": "Nursing School Explained",
+  "license": "Public YouTube origin; linked only, no mirrored media",
+  "sourceCopy": "Bonfyre processed the public origin transiently, removed the downloaded media, and kept only derived artifacts.",
+  "whyItMatters": "The same messy training audio becomes a clean transcript, a shift-ready brief, and a searchable handoff record with the original source still traceable.",
+  "outputs": ["handoff brief", "clean transcript", "proof bundle", "search across handoffs"],
+  "searchOutputs": ["search across handoffs"]
 }

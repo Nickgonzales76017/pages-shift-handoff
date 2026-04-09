@@ -1,0 +1,26 @@
+{
+  "title": "Practice Nursing Hand-Off Report #1",
+  "public_url": "https://www.youtube.com/watch?v=fIABkSYOiv4",
+  "out_dir": "/tmp/bonfyre-public-proof-nursing",
+  "source": {
+    "title": "Practice Nursing Hand-Off Report #1",
+    "channel": "Nursing School Explained",
+    "duration_seconds": 128
+  },
+  "transcribe": {
+    "avg_confidence": 0.5817,
+    "avg_logprob": -0.624,
+    "rtf": 0.0330,
+    "segments_total": 5,
+    "segments_hallucinated": 1
+  },
+  "outputs": {
+    "transcript_json": "/tmp/bonfyre-public-proof-nursing/transcribe/transcript.json",
+    "transcript_txt": "/tmp/bonfyre-public-proof-nursing/transcribe/transcript.txt",
+    "clean_txt": "/tmp/bonfyre-public-proof-nursing/clean/clean.txt",
+    "paragraphs_txt": "/tmp/bonfyre-public-proof-nursing/paragraph/paragraphs.txt",
+    "brief_md": "/tmp/bonfyre-public-proof-nursing/brief/brief.md",
+    "brief_artifact": "/tmp/bonfyre-public-proof-nursing/brief/artifact.json"
+  },
+  "retained_media": false
+}

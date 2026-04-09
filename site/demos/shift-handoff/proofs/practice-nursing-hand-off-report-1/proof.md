@@ -1,0 +1,41 @@
+# Bonfyre Public Source Proof
+
+- Title: Practice Nursing Hand-Off Report #1
+- Public origin: https://www.youtube.com/watch?v=fIABkSYOiv4
+- Working directory: /tmp/bonfyre-public-proof-nursing
+- Source channel: Nursing School Explained
+- Source duration: 128 seconds
+- Avg confidence: 0.5817
+- Hallucinated segments: 1
+- Realtime factor: 0.0330
+
+## Outputs
+
+- Transcript JSON: /tmp/bonfyre-public-proof-nursing/transcribe/transcript.json
+- Clean transcript: /tmp/bonfyre-public-proof-nursing/clean/clean.txt
+- Paragraphs: /tmp/bonfyre-public-proof-nursing/paragraph/paragraphs.txt
+- Brief: /tmp/bonfyre-public-proof-nursing/brief/brief.md
+
+## Brief Preview
+
+# Practice Nursing Hand-Off Report #1
+
+## Summary
+- what i've discovered in the clinical setting is that students sometimes have trouble and keeping up with report when that's been given to them so here are a few exercises it'll help you prepare and get familiar with taking report in medical abbreviations so that you can be faster in charting those that information down and then also become more used to using these medical abbreviations.
+- mister smith in room five or two is a seventy eight year old male who had an or if of the left hip two days ago he fell while he was walking his dog cuz it tripped over the leash past medical history includes hypertension diabetes high cholesterol osteoarthritis is a smoker and he says it drinks about one or two beers every night his medications are his regular home medications in addition he's getting low in ox 40 milligrams sub-qbi ready which is do it twenty one hundred and then percocet for pain he had usually takes one pill in the last dose i gave him was at fourteen thirty with some pretty good relief his a and all times four as long so clear his belly is soft he's eating well he boy's in the zero no use up with p t i saw him walk down the hall for a few steps and did pretty well surgical site to left hip has addressing is clean dry in intact he has an IV saline locked to the left forearm money gauge that looks good is.
+- on a diabetic diet and like i said he's been eating well blood sugars for me were one oh six one eighty nine and 153 so it didn't give him any dinner coverage so what needs to be done for him paren pain meds you can have it again six hours or eight thirty.
+- get them up with petee you might want to give them up to sit and watch tv at night and he's actually able call for assistance in case he needs anything any questions.
+- These are just suggestions but it'll help you get faster and get a better understanding of how handoff is performed.
+
+## Action Items
+- No action items detected
+
+## Deep Summary
+- Key Details
+  - what i've discovered in the clinical setting is that students sometimes have trouble and keeping up with report when that's been given to them so here are a few exercises it'll help you prepare and get familiar with taking report in medical abbreviations so that you can be faster in charting those that information down and then also become more used to using these medical abbreviations.
+  - mister smith in room five or two is a seventy eight year old male who had an or if of the left hip two days ago he fell while he was walking his dog cuz it tripped over the leash past medical history includes hypertension diabetes high cholesterol osteoarthritis is a smoker and he says it drinks about one or two beers every night his medications are his regular home medications in addition he's getting low in ox 40 milligrams sub-qbi ready which is do it twenty one hundred and then percocet for pain he had usually takes one pill in the last dose i gave him was at fourteen thirty with some pretty good relief his a and all times four as long so clear his belly is soft he's eating well he boy's in the zero no use up with p t i saw him walk down the hall for a few steps and did pretty well surgical site to left hip has addressing is clean dry in intact he has an IV saline locked to the left forearm money gauge that looks good is.
+  - on a diabetic diet and like i said he's been eating well blood sugars for me were one oh six one eighty nine and 153 so it didn't give him any dinner coverage so what needs to be done for him paren pain meds you can have it again six hours or eight thirty.
+  - get them up with petee you might want to give them up to sit and watch tv at night and he's actually able call for assistance in case he needs anything any questions.
+
+## Transcript
+what i've discovered in the clinical setting is that students sometimes have trouble and keeping up with report when that's been given to them so here are a few exercises it'll help you prepare and get familiar with taking report in medical abbreviations so that you can be faster in charting those that information down and then also become more used to using these medical abbreviations. These are just suggestions but it'll help you get faster and get a better understanding of how handoff is performed. mister smith in room five or two is a seventy eight year old male who had an or if of the left hip two days ago he fell while he was walking his dog cuz it tripped over the leash past medical history includes hypertension diabetes high cholesterol osteoarthritis is a smoker and he says it drinks about one or two beers every night his medications are his regular home medications in addition he's getting low in ox 40 milligrams sub-qbi ready which is do it twenty one hundred and then percocet for pain he had usually takes one pill in the last dose i gave him was at fourteen thirty with some pretty good relief his a and all times four as long so clear his belly is soft he's eating well he boy's in the zero no use up with p t i saw him walk down the hall for a few steps and did pretty well surgical site to left hip has addressing is clean dry in intact he has an IV saline locked to the left forearm money gauge that looks good is. on a diabetic diet and like i said he's been eating well blood sugars for me were one oh six one eighty nine and 153 so it didn't give him any dinner coverage so what needs to be done for him paren pain meds you can have it again six hours or eight thirty. get them up with petee you might want to give them up to sit and watch tv at night and he's actually able call for assistance in case he needs anything any questions.
