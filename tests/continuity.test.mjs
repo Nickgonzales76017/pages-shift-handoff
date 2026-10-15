@@ -14,7 +14,7 @@ test("claim and lease are isolated, expiring and explicitly renewed",()=>{
  assert.equal(a.tasks.find(x=>x.id===id).assignee,"alex");
  assert.equal(a.tasks.find(x=>x.id===id).leaseUntil,now+30*60_000);
  assert.throws(()=>transact(a,"morgan","claim",{taskId:id,now:now+1000}),/active claim/);
- assert.throws(()=>transact(a,"morgan","renew",{taskId:id,now:now+1000}),/Only current claimant/);
+ assert.throws(()=>transact(a,"morgan","renew",{taskId:id,now:now+1000}),/Only the current claimant/);
  const renew=transact(a,"alex","renew",{taskId:id,now:now+1000});
  assert.ok(renew.tasks.find(x=>x.id===id).leaseUntil>now+30*60_000);
  const expired=transact(renew,"morgan","claim",{taskId:id,now:now+61*60_000});
@@ -23,9 +23,9 @@ test("claim and lease are isolated, expiring and explicitly renewed",()=>{
 });
 test("critical incident needs claimant, blocker clearance, source receipt and independent review",()=>{
  let w=fixture(),id="svc-cooling",now=1760475600000;
- assert.throws(()=>transact(w,"alex","resolve",{taskId:id,receipt:"fixture://test/done",now}),/blocked/);
+ assert.throws(()=>transact(w,"alex","resolve",{taskId:id,receipt:"fixture://test/done",now}),/blocker/);
  w=transact(w,"alex","claim",{taskId:id,now});
- assert.throws(()=>transact(w,"alex","resolve",{taskId:id,receipt:"fixture://test/done",now}),/blocked/);
+ assert.throws(()=>transact(w,"alex","resolve",{taskId:id,receipt:"fixture://test/done",now}),/blocker/);
  w=transact(w,"alex","unblock",{taskId:id});
  assert.throws(()=>transact(w,"alex","resolve",{taskId:id,receipt:"fixture://test/done",now}),/review/);
  assert.throws(()=>transact(w,"alex","review",{taskId:id}),/Supervisor or incoming/);
