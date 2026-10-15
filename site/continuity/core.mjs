@@ -158,7 +158,7 @@ export function transact(workspace,actor,command,options={}){
  throw Error("Unsupported transition.");
 }
 export function handoffCut(w){
- const rows=w.tasks.map(t=>[t.id,t.priority,t.stage,t.assignee,t.blocker,t.source,t.receipt,t.review].map(v=>String(v??"").replace(/[\r\n\t|]/g," ")).join("|")).sort();
+ const rows=w.tasks.map(t=>[t.id,t.priority,t.stage,t.assignee,t.blocker,t.source,t.receipt,t.review,t.correction,t.detail,t.requires.join(";")].map(v=>String(v??"").replace(/[\r\n\t|]/g," ")).join("|")).sort();
  return "bonfyre-shift-cut-v1\n"+w.id+"\n"+w.shift+"\n"+rows.join("\n");
 }
 export function importTSV(text,workspace){
