@@ -1,0 +1,28 @@
+name: Shift Continuity contracts
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'site/continuity/**'
+      - 'tests/continuity.test.mjs'
+      - '.github/workflows/continuity-checks.yml'
+  pull_request:
+    paths:
+      - 'site/continuity/**'
+      - 'tests/continuity.test.mjs'
+permissions:
+  contents: read
+jobs:
+  continuity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check the complete browser workbench
+        run: |
+          node --check site/continuity/core.mjs
+          node --check site/continuity/studio.mjs
+      - name: Verify exact role transitions and refusal paths
+        run: node --test tests/continuity.test.mjs
