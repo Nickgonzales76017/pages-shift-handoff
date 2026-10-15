@@ -81,7 +81,7 @@ function renderDetail(){
  $("release").disabled=t.assignee!==w.activeActor&&w.activeActor!==w.supervisor;
  $("review").disabled=t.review==="reviewed"||![w.incoming,w.supervisor].includes(w.activeActor);
  $("review").textContent=t.review==="reviewed"?"Reviewed ✓":"Mark reviewed";
- $("resolveForm button").disabled=t.stage==="blocked"||t.assignee!==w.activeActor||t.leaseUntil<=Date.now();
+ $("resolveForm").querySelector("button").disabled=t.stage==="blocked"||t.assignee!==w.activeActor||t.leaseUntil<=Date.now();
  $("unblock").disabled=t.stage!=="blocked"||t.assignee!==w.activeActor&&w.activeActor!==w.supervisor;
 }
 function renderJournal(){
