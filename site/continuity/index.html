@@ -1,0 +1,79 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark">
+<meta name="description" content="Aurekai Shift Continuity: source-linked operator handoffs, task ownership, incident review, acknowledged next-shift work and correction receipts.">
+<link rel="canonical" href="https://nickgonzales76017.github.io/pages-shift-handoff/continuity/">
+<link rel="stylesheet" href="./studio.css"><script type="module" src="./studio.mjs"></script>
+<title>Shift Continuity Studio · Aurekai</title></head><body>
+<a class="skip" href="#work">Skip to workbench</a>
+<header class="topbar">
+<a class="identity" href="../"><span class="brandmark">A·</span><span>AUREKAI<small>SHIFT CONTINUITY / WORKGRAPH</small></span></a>
+<nav aria-label="Navigate Aurekai experiences"><a href="../">Handoff intake</a><a href="https://nickgonzales76017.github.io/pages-postmortem-atlas/">Postmortem Atlas</a><a href="https://nickgonzales76017.github.io/bonfyre/#experiences">Work samples ↗</a></nav>
+<span class="local"><span class="dot"></span> Browser-local simulation</span>
+</header>
+<main id="work">
+<section class="intro"><div class="eyebrow">OPERATIONAL CONTINUITY / REVIEWABLE TRANSITIONS</div>
+<div class="hero"><div><h1>No work lost<br><em>between shifts.</em></h1><p>Move from an operator's source observations through owned, reviewable work to a next-shift handoff that actually requires acknowledgement. Explore with the fictional district service scenario—or import your own bounded task feed.</p></div>
+<div class="hero-actions"><button id="load" class="quiet" type="button">Reload reference scenario</button><button id="save" class="primary" type="button">Save workspace</button><button id="export" class="outline" type="button">Export handoff ↓</button></div></div>
+</section>
+<section class="controlbar" aria-label="Shift ownership">
+<div class="cell"><span>INSTITUTION</span><strong id="team">North District Service Operations</strong></div>
+<div class="cell"><span>SHIFT TRANSITION</span><strong id="shift">Evening → Morning continuity</strong></div>
+<label class="cell actor">ACT AS <select id="actor" aria-label="Choose simulated actor"></select></label>
+<div class="cell state"><span>HANDOFF STATE</span><strong id="handoffState">Not prepared</strong></div>
+</section>
+<section class="metrics" aria-label="Current work state">
+<div class="metric"><span>01 / OPEN</span><strong id="openCount">—</strong><small>Items carrying forward</small></div>
+<div class="metric"><span>02 / CRITICAL</span><strong id="criticalCount">—</strong><small>Unresolved priority work</small></div>
+<div class="metric"><span>03 / BLOCKED</span><strong id="blockedCount">—</strong><small>Need a decision or proof</small></div>
+<div class="metric"><span>04 / HELD CLAIMS</span><strong id="claimCount">—</strong><small>Temporary operator leases</small></div>
+<div class="metric"><span>05 / REVIEW OPEN</span><strong id="reviewCount">—</strong><small>Incoming/supervisor checks</small></div>
+</section>
+<section class="main-grid">
+<div class="operations">
+<div class="panel-header"><div><span class="eyebrow">01 / SOURCE-LINKED WORK</span><h2>What needs the next shift?</h2></div><span id="revision" class="revision">Revision 0</span></div>
+<div class="filters"><label>Find work<input id="query" type="search" placeholder="Search title, source, blocker…" aria-label="Search work"></label>
+<label>Stage<select id="stageFilter"><option value="all">All states</option><option value="open">Open work</option><option value="blocked">Blocked</option><option value="claimed">Claimed</option><option value="resolved">Resolved</option></select></label>
+<label>Priority<select id="priorityFilter"><option value="all">Any priority</option><option value="critical">Critical</option><option value="high">High</option><option value="normal">Normal</option><option value="low">Low</option></select></label>
+</div>
+<div class="task-layout">
+<div id="taskList" class="task-list" aria-label="Indexed operational tasks"></div>
+<section class="detail" aria-label="Selected task detail">
+<div class="detail-caption"><span class="eyebrow">SELECTED OCCURRENCE</span><span id="taskId" class="mono">—</span></div>
+<h3 id="taskTitle">Choose a work item</h3>
+<div class="detail-tags"><span id="taskPriority">—</span><span id="taskStage">—</span><span id="taskOwner">—</span></div>
+<p id="taskDescription" class="description"></p>
+<div class="source-field"><span>ORIGINAL SOURCE</span><a href="#" id="taskSource" rel="noopener noreferrer" target="_blank">—</a><small>Fixture references are illustrative; external sources need independent checking.</small></div>
+<div class="source-field"><span>REQUIRED COMPLETION MATERIAL</span><div id="requirements" class="requirements"></div></div>
+<div class="source-field"><span>CURRENT BLOCKER</span><p id="taskBlocker" class="blocker">—</p></div>
+<div class="source-field"><span>CLAIM / LEASE</span><p id="taskClaim">Not assigned</p></div>
+<div class="actions">
+<button type="button" id="claim" class="primary">Claim 30-minute lease</button>
+<button type="button" id="renew" class="outline">Renew lease</button>
+<button type="button" id="release" class="outline">Release</button>
+<button type="button" id="review" class="outline">Mark reviewed</button>
+</div>
+<div class="forms">
+<form id="noteForm" class="action-form"><label>Observation or correction<textarea name="note" required maxlength="1200" rows="2" placeholder="What changed? Keep the original source visible."></textarea></label><button class="small" type="submit">Record observation</button></form>
+<form id="blockForm" class="action-form"><label>Blocking reason<input name="reason" required maxlength="260" placeholder="e.g. supplier ETA not confirmed"></label><button class="small" type="submit">Block / record dependency</button><button id="unblock" class="small subtle" type="button">Clear blocker</button></form>
+<form id="resolveForm" class="action-form"><label>Completion receipt (HTTPS or fixture reference)<input name="receipt" required maxlength="500" placeholder="https://…"></label><button class="small" type="submit">Resolve with receipt</button></form>
+</div>
+</section>
+</div>
+</div>
+<aside class="handoff-panel">
+<div class="eyebrow">02 / SHIFT TRANSITION</div><h2>An actual<br><em>handoff cut.</em></h2>
+<p>Prepare a bounded snapshot of the work that still matters. The incoming operator must acknowledge exactly that revision. Later changes make an unaccepted cut stale.</p>
+<div class="handoff-people"><div><span>OUTGOING</span><strong id="outgoing">Alex</strong></div><div class="transfer">→</div><div><span>INCOMING</span><strong id="incoming">Morgan</strong></div></div>
+<div class="handoff-actions"><button class="primary" id="prepare" type="button">Prepare handoff</button><button class="outline" id="accept" type="button">Acknowledge as incoming</button><button class="outline" id="revoke" type="button">Revoke stale handoff</button></div>
+<div class="handoff-receipt" id="handoffReceipt" aria-live="polite">No handoff prepared. Source work stays individually reviewable.</div>
+<hr>
+<div class="eyebrow">03 / EVENT HISTORY</div><h3>What actually changed?</h3><div id="journal" class="journal" aria-label="Recorded local transitions"></div>
+<button type="button" id="downloadYaff" class="outline full">Export typed WorkGraph review ↑</button>
+<a id="postmortem" href="https://nickgonzales76017.github.io/pages-postmortem-atlas/" target="_blank" rel="noopener noreferrer" class="postmortem">Continue incident review in Postmortem Atlas ↗</a>
+<p class="legal">Authority boundary: these are local simulated claims, acknowledgements and receipts. They do not reserve real staff, activate a native WorkGraph mission or dispatch anyone.</p>
+</aside>
+</section>
+<section class="import-section"><div><span class="eyebrow">04 / NEW SOURCE WORK</span><h2>Import your own shift.</h2><p>Bring 1–120 source-linked tasks as TSV: <code>id, title, priority, kind, source, detail</code> (tab separated). Preserve original task identity and refuse duplicates or malformed sources. Importing does not submit work to anybody.</p></div><label class="upload">Import bounded TSV<input type="file" id="tsv" hidden accept=".tsv,text/tab-separated-values,text/plain"></label></section>
+</main><footer><span>Bonfÿre · native WorkGraph semantics, local demonstration</span><span>Guide and source preview, not a staffing agreement</span><a href="../">Back to voice intake ↗</a></footer>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body></html>
