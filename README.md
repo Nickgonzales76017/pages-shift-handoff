@@ -2,6 +2,18 @@
 
 **[Open the Shift Continuity Studio](https://nickgonzales76017.github.io/pages-shift-handoff/continuity/)** · [Original shift-recording intake](https://nickgonzales76017.github.io/pages-shift-handoff/) · [Incident Postmortem Atlas](https://nickgonzales76017.github.io/pages-postmortem-atlas/)
 
+## Aurekai / Bonfÿre: product contract
+
+| | This experience |
+|---|---|
+| **For** | Operations teams |
+| **Outcome** | Preserve source, handoff state, leases and reviewer decisions across shifts |
+| **Technical boundary** | A GitHub Pages experience showing source-aware, reviewable work; do not infer a deployed native Bonfÿre executor from the browser UI |
+| **Maturity** | Interactive local demonstration; fictional scenario; typed exports are proposals, not executed native work |
+| **Acceptance** | Follow the linked experience and inspect its actual source, tests, workflow and exported artifacts; an illustrative action is not proof of a downstream effect |
+
+**Aurekai** owns the product, public participation and business opportunity. **Bonfÿre** owns the reusable identity, capability, authorization, work and evidence architecture. [Why the two exist](https://github.com/Nickgonzales76017/bonfyre/blob/main/docs/aurekai-bonfyre-model.md).
+
 ## Carry operational work across a shift change
 
 The Shift Continuity Studio gives an outgoing operator, an incoming operator and a supervisor different, enforceable **local demonstration** transitions. It is designed to show what a full operational handoff requires—not just a list of action items.
