@@ -101,20 +101,30 @@
       .app { grid-template-columns: 1fr; }
       .sidebar { border-right: none; border-bottom: 1px solid var(--border); }
     }
-  </style>
+  
+    header{flex-wrap:wrap}
+    .badge-demo{background:#263e35;color:#d9eadf;border:1px solid #527761}
+    .aurekai-context{flex:1 0 100%;border-top:1px solid var(--border);padding:.8rem 0 0;display:flex;align-items:center;justify-content:space-between;gap:.5rem 2rem;flex-wrap:wrap}
+    .aurekai-context p{margin:0;font-size:.79rem;line-height:1.6;color:var(--dim)}
+    .aurekai-context strong{color:var(--fg)}
+    .aurekai-context nav{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap}
+    .aurekai-context a{color:#f3a484;font-size:.76rem;text-decoration:underline;text-underline-offset:3px}
+    .aurekai-context a:focus-visible{outline:2px solid #f3a484;outline-offset:3px}
+    </style>
 </head>
 <body>
   <div class="app">
     <!-- ── Header ── -->
     <header>
       <h1>Shift Handoff Board</h1>
-      <span class="badge badge-live" id="statusBadge">LIVE</span>
+      <span class="badge badge-demo" id="statusBadge">DEMO</span>
       <div class="header-right">
         <a class="btn btn-primary" href="continuity/" style="text-decoration:none;white-space:nowrap">Open Shift Continuity Studio ↗</a>
         <span id="shiftLabel" style="font-size:.85rem;color:var(--dim)"></span>
         <button class="btn btn-ghost" id="toggleDemoBtn" type="button">Hide Corpus</button>
         <button class="btn btn-ghost" onclick="toggleConfig()">Settings</button>
       </div>
+          <div class="aurekai-context" aria-label="Aurekai demo and source"><p><strong>Aurekai demonstration.</strong> Rehearse evidence-backed shift transitions, leases and handoffs. Public or sample corpus; file intake requires a separate GitHub commit and its actual workflow. A preview is not a completed external action.</p><nav aria-label="Related sites"><a href="https://aurekai.work">Aurekai</a><a href="https://nickgonzales76017.github.io/bonfyre/">Bonfÿre</a><a href="https://github.com/Nickgonzales76017/pages-shift-handoff">Source &amp; limits</a></nav></div>
     </header>
 
     <!-- ── Sidebar ── -->
@@ -201,7 +211,7 @@
         <p style="font-size:1.2rem;margin-bottom:.5rem;">No handoffs yet</p>
         <p>Record a shift handoff and drop it in the upload zone.</p>
         <p style="margin-top:1.5rem;font-size:.85rem;line-height:1.6;">
-          <strong style="color:var(--accent);">Path 3 — Hybrid Architecture</strong><br>
+          <strong style="color:var(--accent);">Example intake path (verify actual workflow)</strong><br>
           Prepare intake copy → upload with <strong style="color:var(--accent)">GitHub’s own web UI</strong><br>
           → <strong style="color:var(--accent)">GitHub Actions</strong> transcribes, tags, detects tone<br>
           → <strong style="color:#818cf8">WASM</strong> runs bonfyre-brief in your browser for instant preview<br>
@@ -510,8 +520,8 @@
       document.getElementById('statusBadge').textContent = 'READY';
     }
     function hidePipeline() {
-      document.getElementById('statusBadge').className = 'badge badge-live';
-      document.getElementById('statusBadge').textContent = 'LIVE';
+      document.getElementById('statusBadge').className = 'badge badge-demo';
+      document.getElementById('statusBadge').textContent = 'DEMO';
     }
     function updateStep(step, state) {
       const el = document.querySelector(`[data-step="${step}"]`);
